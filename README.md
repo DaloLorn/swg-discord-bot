@@ -29,8 +29,13 @@ For instance:
         "LoginPort": 44453,
         "Username": "SWGAccount",
         "Password": "SWGPassword",
+    },
+    "Params": {
         "Character": "Discord",
-        "ChatRoom": "Genchat"
+        "ChatRooms": [
+		"GalaxyChat",
+		"Chat.RP"
+	]
     },
     "Discord": {
         "BotName": "RoC-Bot",
@@ -49,8 +54,8 @@ For instance:
 | SWG.LoginPort | The Port of the SWGEmu login server.  This is usually 44453 |
 | SWG.Username | The Username you type in the SWG splash screen. |
 | SWG.Password | The Password you type in the SWG splash screen. |
-| SWG.Character | The Character you choose on the character select screen.  First name only.  Case matters. |
-| SWG.ChatRoom | The name of the ChatRoom it should replicate to/from.  If nested in the tree, use dots, i.e. Chat.General.Main |
+| Params.Character | The Character you choose on the character select screen.  First name only.  Case matters. |
+| Params.ChatRooms | The name(s) of the ChatRoom(s) it should replicate to/from.  If nested in the tree, use dots, i.e. Chat.General.Main |
 | Discord.BotName | The App Name of the Bot you created in discordapp.com/developers |
 | Discord.BotToken | The App Bot User Token from the discordapp Bot page |
 | Discord.ServerName | The name of the discord server the Bot is monitoring |
