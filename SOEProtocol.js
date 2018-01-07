@@ -9,8 +9,8 @@ var DecodeSOEPacket = module.exports.Decode = function (buf, decrypted) {
     var SOEHeader = buf.readUInt16BE(0);
     if (SOEHeader > 0x2 && !decrypted) buf = Decrypt(buf);
     var len, opcode;
-    console.log(buf.toString('hex'));
-    console.log(buf.toString('ascii').replace(/[^A-Za-z0-9!"#$%&'()*+,.\/:;<=>?@\[\] ^_`{|}~-]/g, ' ').split('').join(' '));
+//    console.log(buf.toString('hex'));
+//    console.log(buf.toString('ascii').replace(/[^A-Za-z0-9!"#$%&'()*+,.\/:;<=>?@\[\] ^_`{|}~-]/g, ' ').split('').join(' '));
     if (SOEHeader == 0x1) {
         return [{type: "SessionRequest",
             CRCLength: buf.readUInt32BE(2),
@@ -78,7 +78,7 @@ var DecodeSOEPacket = module.exports.Decode = function (buf, decrypted) {
             fragments = buf.slice(8,-3);
         } else {
             fragments = Buffer.concat([fragments, buf.slice(4, -3)]);
-            console.log("fragment", fragments.length , "/", fragmentLength);
+//            console.log("fragment", fragments.length , "/", fragmentLength);
             if (fragments.length == fragmentLength) {
                 buf = fragments;
                 fragments = null;
@@ -90,7 +90,7 @@ var DecodeSOEPacket = module.exports.Decode = function (buf, decrypted) {
                 var ret = [DecodeSWGPacket[opcode](buf.slice(6))];
                 return ret;
             } else if (fragments.length > fragmentLength) {
-                console.log("extra data fragment", fragments.length , "/", fragmentLength);
+//                console.log("extra data fragment", fragments.length , "/", fragmentLength);
                 fragments = null;
             }
         }
@@ -154,7 +154,7 @@ function Encrypt(bufData) {
         bufData = Buffer.concat([bufData.slice(0,2), zlib.deflateSync(bufData.slice(2)), Buffer.from([1,0,0])]);
     else
         bufData = Buffer.concat([bufData, Buffer.from([0,0,0])]);
-    console.log(bufData.toString('hex'));
+//    console.log(bufData.toString('hex'));
     var encrypted = new Buffer(bufData.length);
     encrypted.writeUInt16BE(bufData.readUInt16BE(0), 0);
 
@@ -496,7 +496,7 @@ DecodeSWGPacket[0x9cf2b192] = function(data) {
 }
 EncodeSWGPacket["ChatQueryRoom"] = function(data) {
     var header = EncodeSOEHeader(0x9cf2b192, 3);
-    var buf = new Buffer(496);
+    var buf = new Buffer(1024);
     buf.writeUInt32LE(session.RequestID++, 0);
     buf.off = 4;
     writeAString(buf, data.RoomPath);
@@ -518,21 +518,21 @@ DecodeSWGPacket[0xc4de864e] = function(data) {
         AString(data);//galaxy
         ret.Players.push(AString(data));
     }
-    var count = data.readUInt32LE(0);
+    var count = data.readUInt32LE(data.off);
     data.off += 4;
     for (var i = 0; i < count; i++) {
         AString(data);//swg
         AString(data);//galaxy
         ret.Invited.push(AString(data));
     }
-    var count = data.readUInt32LE(0);
+    var count = data.readUInt32LE(data.off);
     data.off += 4;
     for (var i = 0; i < count; i++) {
         AString(data);//swg
         AString(data);//galaxy
         ret.Moderators.push(AString(data));
     }
-    var count = data.readUInt32LE(0);
+    var count = data.readUInt32LE(data.off);
     data.off += 4;
     for (var i = 0; i < count; i++) {
         AString(data);//swg

@@ -4,8 +4,13 @@
         "LoginPort": 44453,
         "Username": "SWGAccount",
         "Password": "SWGPassword",
+    },
+    "Params": {
         "Character": "Discord",
-        "ChatRoom": "Genchat"
+        "ChatRooms": [
+		"GalaxyChat",
+		"Chat.RP"
+	]
     },
     "Discord": {
         "BotName": "RoC-Bot",

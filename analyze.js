@@ -2,7 +2,7 @@ const SOEProtocol = require("./SOEProtocol");
 SOEProtocol.analyze = true;
 
 function display(obj) {
-    console.log(JSON.stringify(obj, null, 2));
+//    console.log(JSON.stringify(obj, null, 2));
 }
 function decode(hex) {
     display(SOEProtocol.Decode(hex));
@@ -49,6 +49,7 @@ console.log(bufs[2].toString('hex'));
 //decode("0003d8e76771c882974b0f425e8bc162974c0d927e22fb8c6824fd0a25fb5e9285a708b252c09ea2de0b9846b04d50f41367b6b446ab3f1edea06a2fe90a0831bdcfb4993736e48cc475f187f7445d7a2a35d7e10b0cf0d23ea3d4fa0b9271e80b784ba9c8799b83");
 
 //after-reboot.pcapng
+/*
 console.log("9290 ->");
 decode("000100000002042275cb000001f0");
 console.log("9297 <-");
@@ -78,4 +79,4 @@ decode("00092f9b26dc299a26fe356765f13767a062c32fa7628040d507b36ee507fe2d");
 console.log("14628 ->");
 decode("0009570045253790a1465168d5712aa790772c216294416d327a644d8576a5f089925f3c9b102e939ba93b9b420293e1eda3795c63098e5ac9d715f2b3b8b4180e351eef009fc054a8e52ff54258a05fb5590a8132f1709e931b0d1239ec044696dc17854c030a22f41a9851c6496b1b441b78486e1a5cc31ad05df0a5");
 console.log("14759 ->");
-decode("000957004525336535ae08b29562c872657340f1034372c033734024e47b3026fd772976c35d41c6bcad10129599bdff551ae77a963af67a351ffbc3f73249");
+decode("000957004525336535ae08b29562c872657340f1034372c033734024e47b3026fd772976c35d41c6bcad10129599bdff551ae77a963af67a351ffbc3f73249");*/
