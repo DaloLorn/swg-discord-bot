@@ -38,6 +38,7 @@ For instance:
 	]
     },
     "Discord": {
+	"BotNickname": "RoC Chat"
         "BotName": "RoC-Bot",
         "BotToken": "<Bot-token-from-discordapp.com/developers>",
         "ServerName": "SWG Awesomeness",
@@ -56,6 +57,7 @@ For instance:
 | SWG.Password | The Password you type in the SWG splash screen. |
 | Params.Character | The Character you choose on the character select screen.  First name only.  Case matters. |
 | Params.ChatRooms | The name(s) of the ChatRoom(s) it should replicate to/from.  If nested in the tree, use dots, i.e. Chat.General.Main |
+| Discord.BotNickname | The bot's nickname (minus the active channel) |
 | Discord.BotName | The App Name of the Bot you created in discordapp.com/developers |
 | Discord.BotToken | The App Bot User Token from the discordapp Bot page |
 | Discord.ServerName | The name of the discord server the Bot is monitoring |

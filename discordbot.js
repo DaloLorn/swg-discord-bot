@@ -45,8 +45,12 @@ function discordBot() {
 	}
 	if(message.content.startsWith('!goto')) {
 		var target = message.content.split(' ')[1];
-		if(SWG.params.ChatRooms.includes(target))
+		if(SWG.params.ChatRooms.includes(target)) {
 			currentChannel = SWG.params.ChatRooms.indexOf(target);
+			server.fetchMember(client.user).then((member) => {
+				member.setNickname(config.Discord.BotNickname + " (" + SWG.params.ChatRooms[currentChannel] + ")");
+			});
+		}
 		return;
 	}
         if (message.channel.name != config.Discord.ChatChannel) return;
@@ -65,6 +69,9 @@ function discordBot() {
         .then(t => {
             client.user.setPresence({ status: "online", game: {name: "Progor-Chat"}});
             server = client.guilds.find("name", config.Discord.ServerName);
+		server.fetchMember(client.user).then((member) => {
+			member.setNickname(config.Discord.BotNickname + " (" + SWG.params.ChatRooms[currentChannel] + ")");
+		});
             notif = server.channels.find("name", config.Discord.NotificationChannel);
             chat = server.channels.find("name", config.Discord.ChatChannel);
             notifRole = server.roles.find("name", config.Discord.NotificationMentionRole);
